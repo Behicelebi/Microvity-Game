@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmu6nluy1vnod"]
+
+[ext_resource type="Texture2D" uid="uid://eldcpa2p6npn" path="res://textures/grab.png" id="1_sahef"]
+[ext_resource type="Script" path="res://scripts/grab_point.gd" id="1_wxwct"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ciicp"]
+radius = 6.7082
+
+[node name="Grab Point" type="Node2D"]
+script = ExtResource("1_wxwct")
+
+[node name="Grab" type="Sprite2D" parent="."]
+position = Vector2(0.532658, 0.499999)
+scale = Vector2(0.20603, 0.20603)
+texture = ExtResource("1_sahef")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_ciicp")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
